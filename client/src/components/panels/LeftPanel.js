@@ -7,4 +7,5 @@ const LeftPanel = () => {
         </div>
     )
 }
+
 export default LeftPanel;

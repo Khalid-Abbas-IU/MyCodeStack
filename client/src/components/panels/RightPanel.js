@@ -1,9 +1,10 @@
 import React from 'react';
+import TextEdits from './rightPanel/TextEdits';
 
 const RightPanel = () => {
     return(
-        <div>
-          RightPanel
+        <div className='right-panel'>
+          <TextEdits/>
         </div>
     )
 }
