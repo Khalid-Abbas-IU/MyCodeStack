@@ -8,10 +8,31 @@
     justify-content: center;
     align-items: center;
 }
+.td-main-layout{
+    height: calc(100% - 60px);
+    display: flex;
+    justify-content: space-between;
+}
 .td-center-element{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.td-left-panel{
+    width: 25%;
+    height: 100vh;
+    background: rgb(45, 206, 85);
+}
+.td-right-panel{
+    width: 25%;
+    height: 100vh;
+    background: rgb(48, 20, 177);
+}
+.td-main-panel{
+    width: 50%;
+    height: 100vh;
+    background: chocolate;
 }
 
 .td-header{

@@ -5,11 +5,11 @@ import MainPanel from '../panels/MainPanel';
 
 const MainLayout=()=>{
     return(
-        <>
-        <LeftPanel/>
-        <MainPanel/>
-        <RightPanel/>
-        </>
+        <div className="td-main-layout">
+            <LeftPanel/>
+            <MainPanel/>
+            <RightPanel/>
+        </div>
     );
 
 }

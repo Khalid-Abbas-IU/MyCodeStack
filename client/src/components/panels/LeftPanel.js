@@ -2,7 +2,7 @@ import React from 'react';
 
 const LeftPanel = () => {
     return(
-        <div>
+        <div className="td-left-panel td-center-element">
           LeftPanel
         </div>
     )
