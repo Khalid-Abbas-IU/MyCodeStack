@@ -2,7 +2,7 @@ import React from 'react';
 
 const MainPanel = () => {
     return(
-        <div>
+        <div className="td-main-panel td-center-element">
           MainPanel
         </div>
     )

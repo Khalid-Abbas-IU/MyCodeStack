@@ -6,11 +6,20 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    
+}
+body{
+    margin-top: 60PX;
 }
 .td-app-container{
     display: block;
     justify-content: center;
     align-items: center;
+}
+.td-main-layout{
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: space-between;
 }
 .td-center-element{
     display: flex;
@@ -18,10 +27,32 @@
     align-items: center;
 }
 
+.td-left-panel{
+    width: 20%;
+    background: rgb(45, 206, 85);
+}
+.td-right-panel{
+    width: 20%;
+    background: rgb(48, 20, 177);
+}
+.td-main-panel{
+    width: 60%;
+    background: chocolate;
+}
+
 .td-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    top:0px;
+    width: 100%;
+    background: white;
     height: 60px;
     border-bottom: 1px solid lightgrey;
+}
+
+.td-wrapper-conatiner{
+    display: flex;
+    padding: 0px 10px;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
