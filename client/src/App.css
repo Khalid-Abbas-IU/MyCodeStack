@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.td-app-container{
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.td-center-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.td-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid lightgrey;
+}
