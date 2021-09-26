@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/MyCodeStack/static/css/main.c8378819.chunk.css",
-    "main.js": "/MyCodeStack/static/js/main.c7e4ed46.chunk.js",
-    "main.js.map": "/MyCodeStack/static/js/main.c7e4ed46.chunk.js.map",
+    "main.js": "/MyCodeStack/static/js/main.fac06e96.chunk.js",
+    "main.js.map": "/MyCodeStack/static/js/main.fac06e96.chunk.js.map",
     "runtime-main.js": "/MyCodeStack/static/js/runtime-main.706d356c.js",
     "runtime-main.js.map": "/MyCodeStack/static/js/runtime-main.706d356c.js.map",
-    "static/js/2.802f0979.chunk.js": "/MyCodeStack/static/js/2.802f0979.chunk.js",
-    "static/js/2.802f0979.chunk.js.map": "/MyCodeStack/static/js/2.802f0979.chunk.js.map",
+    "static/js/2.07c649a3.chunk.js": "/MyCodeStack/static/js/2.07c649a3.chunk.js",
+    "static/js/2.07c649a3.chunk.js.map": "/MyCodeStack/static/js/2.07c649a3.chunk.js.map",
     "index.html": "/MyCodeStack/index.html",
     "static/css/main.c8378819.chunk.css.map": "/MyCodeStack/static/css/main.c8378819.chunk.css.map",
-    "static/js/2.802f0979.chunk.js.LICENSE.txt": "/MyCodeStack/static/js/2.802f0979.chunk.js.LICENSE.txt"
+    "static/js/2.07c649a3.chunk.js.LICENSE.txt": "/MyCodeStack/static/js/2.07c649a3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.706d356c.js",
-    "static/js/2.802f0979.chunk.js",
+    "static/js/2.07c649a3.chunk.js",
     "static/css/main.c8378819.chunk.css",
-    "static/js/main.c7e4ed46.chunk.js"
+    "static/js/main.fac06e96.chunk.js"
   ]
 }
