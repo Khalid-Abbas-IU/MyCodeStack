@@ -1,6 +1,12 @@
 import React,{useState} from 'react';
 const TextEdits = () => {
     const [tab , setTab]=useState(1);
+
+
+    const handleHorizontalPos = (position) =>{
+        console.log("position",position)
+    }
+
     return(
         <div className='td-text-edits'>
             <div className='td-rp-te-info-top'>
@@ -32,7 +38,7 @@ const TextEdits = () => {
                     </div>
                     <div className='text-position-slider'>
                         <div>Horizontal</div>
-                        <input type='range' min='1' max='100' defaultValue='50'></input>
+                        <input type='range' min='1' max='100' defaultValue='50' onChange={handleHorizontalPos}/>
                     </div>
                 </div>
                 :
