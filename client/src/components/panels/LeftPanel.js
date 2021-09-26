@@ -10,7 +10,8 @@ const LeftPanel = () => {
 
     return(
         <div className={`td-left-panel td-center-element ${isModalOpen ? 'show-modal' :''}`}>
-                <button className="open-cta" onClick={openLeftSection}>+
+                <button className="open-cta" onClick={openLeftSection}>
+                    {isModalOpen?"<":">"}
                 </button>
             <div className="content-wrapper">
                 <button className="cta-button">

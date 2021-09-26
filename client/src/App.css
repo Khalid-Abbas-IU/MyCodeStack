@@ -203,10 +203,10 @@ body{
     border: 2px solid #38A3A5;
     position: absolute;
     cursor: pointer;
-    right: -17px;
+    right: -27px;
     font-size: 30px;
+    font-weight: 600;
     color:#38A3A5 ;
-    font-weight: 400;
     outline: none ;
     top: 50%;
     transform: translateY(-50%);
