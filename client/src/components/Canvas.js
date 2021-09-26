@@ -30,29 +30,52 @@ class Canvas extends Component {
         });
         window.canvas = this.canvas;
         this.props.setCanvas(this.canvas);
-        let textBox = new fabric.Textbox('Text Designer', {
-            left: 50,
-            top: 50,
-            width: 120,
-            fontSize: 20
-        });
-        this.canvas.add(textBox).setActiveObject(textBox);
         this.canvas.on({
-            'object:selected':this.onObjectSelected,
+            // 'object:modified':this.onObjectSelected,
+            // 'object:selected':this.onObjectSelected,
+            // 'object:removed':this.onObjectSelected,
+            'object:added':this.onObjectSelected,
+            // 'object:scaled':this.onObjectSelected,
+            // 'object:moved': this.onObjectSelected,
+            // 'object:scaling':this.onObjectSelected,
+            'selection:created': this.onObjectSelected,
+            // 'mouse:up:before': this.onObjectSelected,
+            // 'selection:updated':this.onObjectSelected,
             'selection:cleared':this.objectSelectionCleared,
+            // 'mouse:up': this.onObjectSelected,
+            // 'object:moving': this.onObjectSelected,
+            // 'after:render':this.onObjectSelected,
         })
     }
 
     onObjectSelected = (e) =>{
-        console.log("e.target.type :",e);
+        console.log("onObjectSelected",e.target);
         if(e.target.type === 'activeSelection') return;
         this.props.setActiveObject(e.target);
 
     }
 
     objectSelectionCleared=(e)=>{
+        console.log("objectSelectionCleared")
         this.props.setActiveObject(null);
     }
+
+    objectAdded=(e)=>{
+        console.log("object added")
+        let obj= e.target;
+        obj.setControlsVisibility({
+                                      bl: true,
+                                      br: true,
+                                      mb: false,
+                                      ml: false,
+                                      mr: false,
+                                      mt: false,
+                                      mtr: true,
+                                      tl: true,
+                                      tr: true,
+                                  });
+        this.props.setActiveObject(obj);
+}
 
     
 

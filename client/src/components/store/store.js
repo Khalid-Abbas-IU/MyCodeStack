@@ -23,7 +23,7 @@ const Reducer = (state=initialState, action) =>{
         case 'OBJECT_SELECTION':
             return {
                 ...state,
-                activeObject:action.activeObject
+                activeObject:action.object
             }
             
     }
