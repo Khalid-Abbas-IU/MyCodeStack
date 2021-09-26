@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 const LeftPanel = () => {
 
  const   [isModalOpen,setModal] = useState(false);
- const openLeftSection = () =>{
+
+    const openLeftSection = ()=>{
         setModal(!isModalOpen);
     }
 
@@ -19,6 +20,7 @@ const LeftPanel = () => {
             </div>
         </div>
     )
+
 }
 
 export default LeftPanel;

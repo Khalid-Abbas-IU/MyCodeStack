@@ -5,7 +5,7 @@ import MainPanel from '../panels/MainPanel';
 import {connect} from "react-redux";
 
 const MainLayout=(props)=>{
-    const [activeObject, setActiveObject]=useState(false)
+    const [activeObject, setActiveObject]=useState(true)
 
     useEffect(()=>{
         if (props.canvas && props.canvas.getActiveObject()){
