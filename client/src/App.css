@@ -118,11 +118,12 @@ body{
 }
 
 .te-position-align-bar button:hover{
-    border-radius: 6px;
-    background: #a0a0a041;
+    border-radius: 4px;
+    /*background: #a0a0a041;*/
+    box-shadow: 0 0 8px rgba(88,88,88,.1);
 }
 
-.te-position-align-bar img{ 
+.te-position-align-bar img{
     width: 20px;
     height: 20px;
 }
