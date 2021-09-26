@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    
+    font-family: Montserrat;
 }
 body{
     margin-top: 60PX;
@@ -16,6 +19,7 @@ body{
     height: calc(100vh - 60px);
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 .td-center-element{
     display: flex;
@@ -24,8 +28,19 @@ body{
 }
 
 .td-left-panel{
-    position: fixed;
-    background: rgb(45, 206, 85);
+    position: absolute;
+    background: #f7f7f7;
+    display: flex;
+    top: 0;
+    width: 200px;
+    transform: translateX(-200px);
+    transition: all 0.3s;
+    height: calc(100vh - 60px);
+    z-index: 999;
+    border-radius: 4px;
+    align-items: flex-start;
+    box-shadow: -3px 7px 10px 8px #aaaaaa;;
+    padding: 60px 0 60px 0;
 }
 .td-right-panel{
     flex: 0 0 330px;
@@ -179,4 +194,38 @@ body{
 .text-position-slider input[type=range]::-moz-range-thumb {
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+.open-cta{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 2px solid #38A3A5;
+    position: absolute;
+    cursor: pointer;
+    right: -17px;
+    font-size: 30px;
+    color:#38A3A5 ;
+    font-weight: 400;
+    outline: none ;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-button{
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    align-items: center;
+    display: flex;
+    border: 1px solid #38A3A5;
+    justify-content:center;
+    border-radius:4px;
+}
+
+.show-modal{
+    transform: translateX(0);
 }
