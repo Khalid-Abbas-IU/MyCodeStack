@@ -4,7 +4,7 @@ const TextEdits = () => {
 
 
     const handleHorizontalPos = (position) =>{
-        console.log("position",position)
+        console.log("position",position.target.value)
     }
 
     return(
