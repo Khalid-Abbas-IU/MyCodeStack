@@ -25,9 +25,11 @@
     background: rgb(45, 206, 85);
 }
 .td-right-panel{
+    display: flex;
+    justify-content: left;
     width: 25%;
     height: 100vh;
-    background: rgb(48, 20, 177);
+    background: rgb(254, 254, 254);
 }
 .td-main-panel{
     width: 50%;
@@ -45,6 +47,72 @@
 
 /* Right Panel Start */
 
+.td-text-edits{
+    width: 100%;
+}
 
+.td-text-edits h1{
+    padding: 5% 5% 5% 5%;
+    font-size: 25px;
+}
+
+.td-rp-te-info-top{
+    width: auto;
+}
+
+.te-tabs{
+    display: flex;
+    margin-top: 10px;
+}
+
+.td-rp-te-tabs{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.te-tabs-selected{
+    border-bottom: 1px solid #888888;
+}
+
+.td-rp-te-tabs:hover{
+    color: #004e8d;
+    border-bottom: 1px solid #004e8d;
+}
+
+.te-position-align-bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 65px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.te-position-align-bar button{
+    border: none;
+    display: flex;
+    justify-content: center;
+    background: none;
+    padding: 5px;
+}
+
+.te-position-align-bar button:hover{
+    border-radius: 6px;
+    background: #a0a0a041;
+}
+
+.te-position-align-bar img{ 
+    width: 20px;
+    height: 20px;
+}
+
+.text-position-slider{
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+}
 
 /* Right Panel End */
