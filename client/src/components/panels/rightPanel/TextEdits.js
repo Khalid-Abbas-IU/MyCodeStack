@@ -1,6 +1,12 @@
 import React,{useState} from 'react';
 const TextEdits = () => {
     const [tab , setTab]=useState(1);
+
+
+    const handleHorizontalPos = (position) =>{
+        console.log("position",position.target.value)
+    }
+
     return(
         <div className='td-text-edits'>
             <div className='td-rp-te-info-top'>
