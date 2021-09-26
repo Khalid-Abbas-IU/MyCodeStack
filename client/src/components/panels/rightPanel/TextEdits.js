@@ -31,8 +31,18 @@ const TextEdits = () => {
                         </button>
                     </div>
                     <div className='text-position-slider'>
-                        <div>Horizontal</div>
+                        <div>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAYUlEQVRIie2QMQ6AMAzEXHg0I7DxLBbexFimokoQIOmGzlK31I4CQgiLKfBn8chzIJC/RIo8GniM1PLWd0a6KrAHtrYwXQPtJxrfBkskErjI+5vBDUjA6gwkYPbvJcT/OQBgQifqdizt5QAAAABJRU5ErkJggg=="/>
+                        </div>
                         <input type='range' min='1' max='100' defaultValue='50'></input>
+                        <input type='number' min='1' max='100' defaultValue='50'/>
+                    </div>
+                    <div className='text-position-slider'>
+                        <div>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAXklEQVRIiWNgGGmggYGBoYOWhv+HYqpbgmw41S3BZjjNfAIzmGjARG0XjFowasGoBSPVgnIGzDIIxq+nlkOQLaG64dgsIdpwZhIsOMrAwMDIwMBwkIGBoZEkpw1pAAAmKyEODDXmrgAAAABJRU5ErkJggg=="/>
+                        </div>
+                        <input type='range' min='1' max='100' defaultValue='50'/>
+                        <input type='number' min='1' max='100' defaultValue='50'/>
                     </div>
                 </div>
                 :

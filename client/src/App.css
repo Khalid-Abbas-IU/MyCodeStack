@@ -29,7 +29,7 @@ body{
 }
 .td-right-panel{
     flex: 0 0 330px;
-    background: rgb(48, 20, 177);
+    background: rgb(254, 254, 254);
 }
 .td-main-panel{
     flex: 1 1 auto;
@@ -129,6 +129,53 @@ body{
 
 .text-position-slider{
     display: flex;
+    justify-content: left;
+    padding: 10px 0px;
+    align-items: center;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.text-position-slider div{
+    width: 60px;
+    border-right: 1px solid #eeeeee;
+    display: flex;
     justify-content: center;
-    padding: 10px 50px;
+    background: none;
+}
+
+
+.text-position-slider input[type=range]{
+    width: 50%;
+    margin: 0px 20px;
+    height: 2px;
+    border-right: 1px solid #eeeeee;
+}
+
+.text-position-slider input[type=number]{
+    width: 50px;
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    text-align: center;
+    padding: 2px;
+    margin-right: 8px;
+    color: #888888;
+}
+
+.text-position-slider input[type=number]:hover{
+    color: #004e8d;
+    border-color: #aaaaaa;
+}
+
+.text-position-slider input[type=number]:focus{
+    color: #004e8d;
+    outline: none;
+    border-color: #999999;
+}
+
+.text-position-slider input[type=range]:focus::-webkit-slider-runnable-track {
+}
+
+.text-position-slider input[type=range]::-moz-range-thumb {
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
