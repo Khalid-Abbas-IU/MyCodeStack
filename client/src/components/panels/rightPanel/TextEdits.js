@@ -217,7 +217,9 @@ class TextEdits extends Component{
                                         Colors.map((color,index)=>{
                                             return (
                                                 <div style={{marginLeft:"41px",marginTop: '10px'}} key={index}>
-                                                    <h3 style={{color:color.code,cursor:'pointer'}}
+                                                    <h3 className="color-item" style={{
+                                                        color: color.code,
+                                                    }}
                                                         onClick={()=>this.changeObjectColor(color.code)}>3 BROKE ENGINNERS</h3>
                                                 </div>
                                             )
@@ -225,9 +227,6 @@ class TextEdits extends Component{
 
                                     }
                                 </div>
-                            }
-
-                        </div>
                             }
                             {
                                 this.state.styleTab === 2 &&
@@ -257,18 +256,23 @@ class TextEdits extends Component{
 
                                 </div>
 
-                }
-                {
-                    this.state.styleTab === 3 &&
-                    <div style={{marginTop:"20px"}}>
-                        {
-                            <div>
-                                <input className="fonts-input" placeholder="Select font"/>
-                            </div>
+                            }
+                            {
+                                this.state.styleTab === 3 &&
+                                <div style={{marginTop:"20px"}}>
+                                    {
+                                        <div>
+                                            <input className="fonts-input" placeholder="Select font"/>
+                                        </div>
 
-                        }
-                    </div>
-                }
+                                    }
+                                </div>
+                            }
+
+                        </div>
+                            }
+
+
 
 
             </div>

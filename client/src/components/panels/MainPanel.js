@@ -8,7 +8,6 @@ class MainPanel extends Component{
     return(
         <div className="td-main-panel td-center-element">
           <Canvas/>
-            <button onClick={()=>this.props.canvas.undo()}>Undo</button>
         </div>
     )
 }
