@@ -205,6 +205,8 @@ class TextEdits extends Component{
                             <div className="d-flex space-btw">
                                 <div className="color-tab mr-1" style={this.state.styleTab===1?{background:' #eceaea',
                                     color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:1})}>Colors</div>
+                                <div className="fonts-tab mr-1" style={this.state.styleTab===2?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:3})}>Fonts</div>
                                 <div className="palette-tab mr-1" style={this.state.styleTab===2?{background:' #eceaea',
                                     color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:2})}>Palette</div>
                             </div>
@@ -252,8 +254,20 @@ class TextEdits extends Component{
                                         })
 
                                     }
+
                                 </div>
 
+                }
+                {
+                    this.state.styleTab === 3 &&
+                    <div style={{marginTop:"20px"}}>
+                        {
+                            <div>
+                                <input className="fonts-input" placeholder="Select font"/>
+                            </div>
+
+                        }
+                    </div>
                 }
 
 

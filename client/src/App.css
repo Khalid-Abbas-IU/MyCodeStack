@@ -39,7 +39,6 @@ body{
     margin: 10px;
 }
 .color-tab{
-    margin-left:50px;
     border:2px solid gray;
     padding: 10px;
     cursor: pointer;
@@ -48,7 +47,13 @@ body{
 }
 
 .palette-tab{
-    margin-right:50px;
+    border:2px solid gray;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.fonts-tab{
     border:2px solid gray;
     padding: 10px;
     font-weight: 700;
@@ -59,8 +64,17 @@ body{
     background: #eceaea;
     color: orangered;
 }
+.fonts-tab:hover{
+    background: #eceaea;
+    color: orangered;
+}
 .mt-10{
     margin-top: 10px;
+}
+.fonts-input{
+    width: 90%;
+    margin: 0px 20px;
+    height: 48px;
 }
 .color-palette-group{
     display: flex;
@@ -69,6 +83,7 @@ body{
     border-radius: 4px;
     cursor: pointer;
 }
+
 .color-palette-group:hover{
     border: 1px solid orangered;
 }
