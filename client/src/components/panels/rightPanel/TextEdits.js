@@ -1,6 +1,9 @@
 import React, {Component, useState} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+
+import {Colors,Palettes} from '../../assets/Colors'
+
 class TextEdits extends Component{
     constructor(props) {
         super(props);
@@ -13,6 +16,7 @@ class TextEdits extends Component{
             currentVarPos:0,
             maxVarPos:0,
             tab:1,
+            styleTab:1
         };
     }
     // static getDerivedStateFromProps = (nextProps, prevState) =>{
@@ -61,8 +65,8 @@ class TextEdits extends Component{
         let activeObject=canvas.getActiveObject();
         console.log(activeObject.left)
 
-    }
 
+    }
 
     handleHorizontalPosition =(e)=>{
         let {activeObject,canvas}=this.props;
@@ -90,6 +94,25 @@ class TextEdits extends Component{
             left
         })
         canvas.renderAll();
+
+    }
+    changeObjectColor =(color)=>{
+        const {canvas} = this.props;
+        let activeObject = canvas.getActiveObject();
+        if (activeObject.type === "i-text"){
+            activeObject.dirty=true;
+            const {styles} = activeObject;
+            for (let styleIndex in styles) {
+                for (let selectionTextStyleIndex in styles[styleIndex]) {
+                    let TextStyleItem = styles[styleIndex][selectionTextStyleIndex];
+                    if (TextStyleItem.hasOwnProperty('fill')) {
+                        TextStyleItem.fill = color;
+                        canvas.renderAll();
+                    }
+                }
+            }
+            canvas.renderAll();
+        }
 
     }
     render() {
@@ -132,7 +155,59 @@ class TextEdits extends Component{
                             </div>
                         </div>
                         :
-                        <div id='te-styles-tab'>Styles</div>
+                        <div id='te-styles-tab'>
+                            <div className="d-flex space-btw">
+                                <div className="color-tab mr-1" style={this.state.styleTab===1?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:1})}>Colors</div>
+                                <div className="palette-tab mr-1" style={this.state.styleTab===2?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:2})}>Palette</div>
+                            </div>
+                            {
+                                this.state.styleTab === 1 &&
+                                <div style={{marginTop:"20px"}}>
+                                    {
+                                        Colors.map((color,index)=>{
+                                            return (
+                                                <div style={{marginLeft:"41px",marginTop: '10px'}} key={index}>
+                                                    <h3 style={{color:color.code,cursor:'pointer'}}
+                                                        onClick={()=>this.changeObjectColor(color.code)}>3 BROKE ENGINNERS</h3>
+                                                </div>
+                                            )
+                                        })
+
+                                    }
+                                </div>
+                            }
+
+                        </div>
+                            }
+                            {
+                                this.state.styleTab === 2 &&
+                                <div style={{marginTop:"20px"}}>
+                                    {
+                                        Palettes.map((palette,index)=>{
+                                            return <div className="color-palette-group">
+                                                {
+                                                    palette.codes.map((color) => {
+                                                        return (
+                                                            <div
+                                                                style={{
+                                                                    background: color,
+                                                                    width: '40px',
+                                                                    height: '40px',
+                                                                }}
+                                                                onClick={() => this.changeObjectColor(color)}
+                                                            ></div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+
+                                        })
+
+                                    }
+                                </div>
+
                 }
 
 
