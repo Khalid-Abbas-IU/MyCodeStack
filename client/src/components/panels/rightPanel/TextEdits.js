@@ -15,6 +15,7 @@ class TextEdits extends Component{
             minVarPos:0,
             currentVarPos:0,
             maxVarPos:0,
+            currentAngle:0,
             tab:1,
             styleTab:1
         };
@@ -43,36 +44,58 @@ class TextEdits extends Component{
                 currentHorPos=activeObject.getBoundingRect().left,
                 maxVarPos=canvas.height - activeObject.getBoundingRect().height,
                 currentVarPos=activeObject.getBoundingRect().top,
+                currentAngle=activeObject.angle,
                 minVarPos=0;
-            this.setState({
+
+            let stateObject = {
                 maxHorizontalPos,
                 minHorizontalPos,
                 currentHorPos,
                 minVarPos,
                 currentVarPos,
+                currentAngle,
                 maxVarPos
-
-            });
+            }
+            this.setState(stateObject);
         }
     }
 
-    subscribeEvents = (canvas) =>{
-        canvas.on('object:moved', this.onObjectMoved)
+    updatePosition = (activeObject) => {
+        this.setState({
+            currentVarPos:activeObject.getBoundingRect().left.toFixed(0),
+            currentHorPos:activeObject.getBoundingRect().top.toFixed(0)
+        });
     }
 
-    onObjectMoved =() =>{
+    updateAngle = (activeObject) => {
+        this.setState({
+            currentAngle:activeObject.angle.toFixed(0)
+        });
+    }
+
+    subscribeEvents = (canvas) => {
+        canvas.on('object:moved', this.onObjectMoved);
+        canvas.on('object:rotating', this.onObjectRotating);
+    }
+
+    onObjectMoved = () => {
         const {canvas}=this.props;
-        let activeObject=canvas.getActiveObject();
-        console.log(activeObject.left)
-
-
+        let activeObject = canvas.getActiveObject();
+        this.updatePosition(activeObject);
     }
+
+    onObjectRotating = () => {
+        const {canvas}=this.props;
+        let activeObject = canvas.getActiveObject();
+        this.updateAngle(activeObject);
+        this.updatePosition(activeObject);
+    }
+
 
     handleHorizontalPosition =(e)=>{
         let {activeObject,canvas}=this.props;
         const position=parseInt(e.target.value);
         this.setState({currentHorPos:position})
-        console.log("position",position)
         let left=position;
         let top=activeObject.getBoundingRect().top;
         activeObject.set({
@@ -115,8 +138,24 @@ class TextEdits extends Component{
         }
 
     }
+
+    handleRotation = (e) => {
+        let {activeObject,canvas}=this.props;
+        const position=parseInt(e.target.value);
+        this.setState({currentAngle:position})
+        let angle=position;
+        // let bound=activeObject.getBoundingRect(true,true);
+        activeObject.setPositionByOrigin()
+        activeObject.set({
+            originX: 'center',
+            originY: 'center',
+            angle
+        });
+        canvas.renderAll()
+    }
+
     render() {
-        const {tab,minHorizontalPos,currentHorPos,maxHorizontalPos,minVarPos,currentVarPos,maxVarPos}=this.state;
+        const {tab,minHorizontalPos,currentHorPos,maxHorizontalPos,minVarPos,currentVarPos,currentAngle,maxVarPos}=this.state;
         return(
             <div className='td-text-edits'>
                 <div className='td-rp-te-info-top'>
@@ -152,6 +191,13 @@ class TextEdits extends Component{
                                 </div>
                                 <input type='range' value={currentVarPos} min={minVarPos} max={maxVarPos} onChange={this.handleVarticalPosition}/>
                                 <input type='number' value={currentVarPos} min={minVarPos} max={maxVarPos} onChange={this.handleVarticalPosition}/>
+                            </div>
+                            <div className='text-position-slider'>
+                                <div>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAXklEQVRIiWNgGGmggYGBoYOWhv+HYqpbgmw41S3BZjjNfAIzmGjARG0XjFowasGoBSPVgnIGzDIIxq+nlkOQLaG64dgsIdpwZhIsOMrAwMDIwMBwkIGBoZEkpw1pAAAmKyEODDXmrgAAAABJRU5ErkJggg=="/>
+                                </div>
+                                <input type='range' value={currentAngle} min='0' max='360' onChange={this.handleRotation}/>
+                                <input type='number' value={currentAngle} min='0' max='360' onChange={this.handleRotation}/>
                             </div>
                         </div>
                         :

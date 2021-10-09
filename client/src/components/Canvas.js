@@ -37,6 +37,7 @@ class Canvas extends Component {
             'object:added':this.onObjectSelected,
             // 'object:scaled':this.onObjectSelected,
             'object:moved': this.onObjectMoved,
+            'object:rotated': this.onObjectRotated,
             // 'object:scaling':this.onObjectSelected,
             'selection:created': this.onObjectSelected,
             // 'mouse:up:before': this.onObjectSelected,
@@ -55,8 +56,12 @@ class Canvas extends Component {
 
     }
     onObjectMoved = (e) =>{
-        console.log("onObjectMoved");
-        // if(e.target.type === 'activeSelection') return;
+        setTimeout(()=>{
+            this.props.setActiveObject(e.target);
+
+        },200)
+    }
+    onObjectRotated = (e) =>{
         setTimeout(()=>{
             this.props.setActiveObject(e.target);
 
