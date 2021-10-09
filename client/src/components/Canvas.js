@@ -22,8 +22,8 @@ class Canvas extends Component {
 
     initCanvas = () => {
         this.canvas = new fabric.Canvas('canvas', {
-            height:500,
-            width:900,
+            height:600,
+            width:1000,
             backgroundColor:"#fff",
             selection: true,
             preserveObjectStacking: true,
@@ -36,7 +36,7 @@ class Canvas extends Component {
             // 'object:removed':this.onObjectSelected,
             'object:added':this.onObjectSelected,
             // 'object:scaled':this.onObjectSelected,
-            // 'object:moved': this.onObjectSelected,
+            'object:moved': this.onObjectMoved,
             // 'object:scaling':this.onObjectSelected,
             'selection:created': this.onObjectSelected,
             // 'mouse:up:before': this.onObjectSelected,
@@ -49,10 +49,18 @@ class Canvas extends Component {
     }
 
     onObjectSelected = (e) =>{
-        console.log("onObjectSelected",e.target);
+        console.log("onObjectSelected");
         if(e.target.type === 'activeSelection') return;
         this.props.setActiveObject(e.target);
 
+    }
+    onObjectMoved = (e) =>{
+        console.log("onObjectMoved");
+        // if(e.target.type === 'activeSelection') return;
+        setTimeout(()=>{
+            this.props.setActiveObject(e.target);
+
+        },200)
     }
 
     objectSelectionCleared=(e)=>{

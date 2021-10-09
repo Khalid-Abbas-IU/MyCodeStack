@@ -5,6 +5,7 @@ class TextEdits extends Component{
     constructor(props) {
         super(props);
         this.state={
+            activeObject:null,
             minHorizontalPos:0,
             currentHorPos:0,
             maxHorizontalPos:0,
@@ -12,11 +13,26 @@ class TextEdits extends Component{
             currentVarPos:0,
             maxVarPos:0,
             tab:1,
-        }
+        };
     }
+    // static getDerivedStateFromProps = (nextProps, prevState) =>{
+    //     if (nextProps.activeObject !== prevState.activeObject)
+    //         console.log("active object changed")
+    //         return {
+    //             activeObject:nextProps.activeObject,
+    //         }
+    // }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.activeObject) {
+    //         console.log("objectModified")
+    //     }
+    // }
+
     componentDidMount() {
+        console.log("did")
         const {canvas,activeObject}=this.props;
         if (canvas && activeObject){
+            this.subscribeEvents(canvas);
             console.log("recieving props")
             let maxHorizontalPos=canvas.width - activeObject.getBoundingRect().width,
                 minHorizontalPos=0,
@@ -35,6 +51,18 @@ class TextEdits extends Component{
             });
         }
     }
+
+    subscribeEvents = (canvas) =>{
+        canvas.on('object:moved', this.onObjectMoved)
+    }
+
+    onObjectMoved =() =>{
+        const {canvas}=this.props;
+        let activeObject=canvas.getActiveObject();
+        console.log(activeObject.left)
+
+    }
+
 
     handleHorizontalPosition =(e)=>{
         let {activeObject,canvas}=this.props;
