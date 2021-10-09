@@ -1,46 +1,101 @@
 import React, {Component, useState} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+
+import {Colors,Palettes} from '../../assets/Colors'
+
 class TextEdits extends Component{
     constructor(props) {
         super(props);
         this.state={
+            activeObject:null,
             minHorizontalPos:0,
             currentHorPos:0,
             maxHorizontalPos:0,
             minVarPos:0,
             currentVarPos:0,
             maxVarPos:0,
+            currentAngle:0,
             tab:1,
-        }
+            styleTab:1
+        };
     }
+    // static getDerivedStateFromProps = (nextProps, prevState) =>{
+    //     if (nextProps.activeObject !== prevState.activeObject)
+    //         console.log("active object changed")
+    //         return {
+    //             activeObject:nextProps.activeObject,
+    //         }
+    // }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.activeObject) {
+    //         console.log("objectModified")
+    //     }
+    // }
+
     componentDidMount() {
+        console.log("did")
         const {canvas,activeObject}=this.props;
         if (canvas && activeObject){
+            this.subscribeEvents(canvas);
             console.log("recieving props")
             let maxHorizontalPos=canvas.width - activeObject.getBoundingRect().width,
                 minHorizontalPos=0,
                 currentHorPos=activeObject.getBoundingRect().left,
                 maxVarPos=canvas.height - activeObject.getBoundingRect().height,
                 currentVarPos=activeObject.getBoundingRect().top,
+                currentAngle=activeObject.angle,
                 minVarPos=0;
-            this.setState({
+
+            let stateObject = {
                 maxHorizontalPos,
                 minHorizontalPos,
                 currentHorPos,
                 minVarPos,
                 currentVarPos,
+                currentAngle,
                 maxVarPos
-
-            });
+            }
+            this.setState(stateObject);
         }
     }
+
+    updatePosition = (activeObject) => {
+        this.setState({
+            currentVarPos:activeObject.getBoundingRect().left.toFixed(0),
+            currentHorPos:activeObject.getBoundingRect().top.toFixed(0)
+        });
+    }
+
+    updateAngle = (activeObject) => {
+        this.setState({
+            currentAngle:activeObject.angle.toFixed(0)
+        });
+    }
+
+    subscribeEvents = (canvas) => {
+        canvas.on('object:moved', this.onObjectMoved);
+        canvas.on('object:rotating', this.onObjectRotating);
+    }
+
+    onObjectMoved = () => {
+        const {canvas}=this.props;
+        let activeObject = canvas.getActiveObject();
+        this.updatePosition(activeObject);
+    }
+
+    onObjectRotating = () => {
+        const {canvas}=this.props;
+        let activeObject = canvas.getActiveObject();
+        this.updateAngle(activeObject);
+        this.updatePosition(activeObject);
+    }
+
 
     handleHorizontalPosition =(e)=>{
         let {activeObject,canvas}=this.props;
         const position=parseInt(e.target.value);
         this.setState({currentHorPos:position})
-        console.log("position",position)
         let left=position;
         let top=activeObject.getBoundingRect().top;
         activeObject.set({
@@ -64,8 +119,43 @@ class TextEdits extends Component{
         canvas.renderAll();
 
     }
+    changeObjectColor =(color)=>{
+        const {canvas} = this.props;
+        let activeObject = canvas.getActiveObject();
+        if (activeObject.type === "i-text"){
+            activeObject.dirty=true;
+            const {styles} = activeObject;
+            for (let styleIndex in styles) {
+                for (let selectionTextStyleIndex in styles[styleIndex]) {
+                    let TextStyleItem = styles[styleIndex][selectionTextStyleIndex];
+                    if (TextStyleItem.hasOwnProperty('fill')) {
+                        TextStyleItem.fill = color;
+                        canvas.renderAll();
+                    }
+                }
+            }
+            canvas.renderAll();
+        }
+
+    }
+
+    handleRotation = (e) => {
+        let {activeObject,canvas}=this.props;
+        const position=parseInt(e.target.value);
+        this.setState({currentAngle:position})
+        let angle=position;
+        // let bound=activeObject.getBoundingRect(true,true);
+        activeObject.setPositionByOrigin()
+        activeObject.set({
+            originX: 'center',
+            originY: 'center',
+            angle
+        });
+        canvas.renderAll()
+    }
+
     render() {
-        const {tab,minHorizontalPos,currentHorPos,maxHorizontalPos,minVarPos,currentVarPos,maxVarPos}=this.state;
+        const {tab,minHorizontalPos,currentHorPos,maxHorizontalPos,minVarPos,currentVarPos,currentAngle,maxVarPos}=this.state;
         return(
             <div className='td-text-edits'>
                 <div className='td-rp-te-info-top'>
@@ -102,9 +192,82 @@ class TextEdits extends Component{
                                 <input type='range' value={currentVarPos} min={minVarPos} max={maxVarPos} onChange={this.handleVarticalPosition}/>
                                 <input type='number' value={currentVarPos} min={minVarPos} max={maxVarPos} onChange={this.handleVarticalPosition}/>
                             </div>
+                            <div className='text-position-slider'>
+                                <div>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAXklEQVRIiWNgGGmggYGBoYOWhv+HYqpbgmw41S3BZjjNfAIzmGjARG0XjFowasGoBSPVgnIGzDIIxq+nlkOQLaG64dgsIdpwZhIsOMrAwMDIwMBwkIGBoZEkpw1pAAAmKyEODDXmrgAAAABJRU5ErkJggg=="/>
+                                </div>
+                                <input type='range' value={currentAngle} min='0' max='360' onChange={this.handleRotation}/>
+                                <input type='number' value={currentAngle} min='0' max='360' onChange={this.handleRotation}/>
+                            </div>
                         </div>
                         :
-                        <div id='te-styles-tab'>Styles</div>
+                        <div id='te-styles-tab'>
+                            <div className="d-flex space-btw">
+                                <div className="color-tab mr-1" style={this.state.styleTab===1?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:1})}>Colors</div>
+                                <div className="fonts-tab mr-1" style={this.state.styleTab===2?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:3})}>Fonts</div>
+                                <div className="palette-tab mr-1" style={this.state.styleTab===2?{background:' #eceaea',
+                                    color: 'orangered'}:{}} onClick={()=>this.setState({styleTab:2})}>Palette</div>
+                            </div>
+                            {
+                                this.state.styleTab === 1 &&
+                                <div style={{marginTop:"20px"}}>
+                                    {
+                                        Colors.map((color,index)=>{
+                                            return (
+                                                <div style={{marginLeft:"41px",marginTop: '10px'}} key={index}>
+                                                    <h3 style={{color:color.code,cursor:'pointer'}}
+                                                        onClick={()=>this.changeObjectColor(color.code)}>3 BROKE ENGINNERS</h3>
+                                                </div>
+                                            )
+                                        })
+
+                                    }
+                                </div>
+                            }
+
+                        </div>
+                            }
+                            {
+                                this.state.styleTab === 2 &&
+                                <div style={{marginTop:"20px"}}>
+                                    {
+                                        Palettes.map((palette,index)=>{
+                                            return <div className="color-palette-group">
+                                                {
+                                                    palette.codes.map((color) => {
+                                                        return (
+                                                            <div
+                                                                style={{
+                                                                    background: color,
+                                                                    width: '40px',
+                                                                    height: '40px',
+                                                                }}
+                                                                onClick={() => this.changeObjectColor(color)}
+                                                            ></div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+
+                                        })
+
+                                    }
+
+                                </div>
+
+                }
+                {
+                    this.state.styleTab === 3 &&
+                    <div style={{marginTop:"20px"}}>
+                        {
+                            <div>
+                                <input className="fonts-input" placeholder="Select font"/>
+                            </div>
+
+                        }
+                    </div>
                 }
 
 
