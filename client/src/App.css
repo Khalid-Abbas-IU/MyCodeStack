@@ -71,6 +71,13 @@ body{
 .mt-10{
     margin-top: 10px;
 }
+.color-item{
+    cursor: pointer;
+    width: fit-content
+}
+.color-item:hover{
+    border: 1px solid lightgrey;
+}
 .fonts-input{
     width: 90%;
     margin: 0px 20px;
@@ -95,11 +102,9 @@ body{
     justify-content: space-between;
 }
 .td-left-panel{
-    position: absolute;
     background: #f7f7f7;
     display: flex;
-    top: 0;
-    width: 200px;
+    width: 240px;
     transform: translateX(-200px);
     transition: all 0.3s;
     height: calc(100vh - 60px);
@@ -110,9 +115,9 @@ body{
     padding: 60px 0 60px 0;
 }
 .td-right-panel{
-    flex: 0 0 330px;
+    /*flex: 0 0 330px;*/
     background: rgb(254, 254, 254);
-    position: fixed;
+    /*position: fixed;*/
     height: 100vh;
     width: 300px;
     right: 0px;
@@ -120,16 +125,18 @@ body{
 }
 .td-main-panel{
     flex: 1 1 auto;
+    overflow: auto;
     background: #ECEEF0;
+    margin-right: 60px;
 }
 
 .td-canvas-wrapper{
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    padding-top: 30px;
-    width: 100%;
-    height: 100%;
+    /*padding-top: 30px;*/
+    width: 800px;
+    height: 500px;
 }
 
 .td-header{

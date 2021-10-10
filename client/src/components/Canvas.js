@@ -22,8 +22,8 @@ class Canvas extends Component {
 
     initCanvas = () => {
         this.canvas = new fabric.Canvas('canvas', {
-            height:600,
-            width:1000,
+            height:500,
+            width:800,
             backgroundColor:"#fff",
             selection: true,
             preserveObjectStacking: true,
