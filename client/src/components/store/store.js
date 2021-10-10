@@ -3,7 +3,7 @@ import React from "react";
 const initialState={
     userName:'Khalid',
     canvas:null,
-    activeObject:null
+    activeObject:null,
 
 }
 

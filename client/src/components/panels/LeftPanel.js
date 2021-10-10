@@ -48,11 +48,11 @@ const LeftPanel = (props) => {
     return(
         <div className={`td-left-panel td-center-element ${isModalOpen ? 'show-modal' :''}`}>
                 <button className="open-cta" onClick={openLeftSection}>
-                    <img src="images/right.svg"/>
+                    <img src="right.svg" alt="gr"/>
                 </button>
             <div className="content-wrapper">
                 <button className="cta-button" onClick={addTextOnCanvas}>
-                    <img src = "images/text.svg"/>
+                    <img src = "images/text.svg" alt="fr"/>
                 </button>
             </div>
         </div>
